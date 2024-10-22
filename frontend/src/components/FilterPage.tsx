@@ -30,7 +30,7 @@ const FilterPage = () => {
             <div key={option.id} className="flex items-center space-x-2 my-5">
                 <Checkbox id={option.id}
                 onClick={()=>appliedFilterHandler(option.label)}/>
-                <Label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed">{option.label}</Label>
+                <Label className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">{option.label}</Label>
             </div>
           ))
         }
