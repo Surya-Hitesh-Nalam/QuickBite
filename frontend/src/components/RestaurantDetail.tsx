@@ -1,4 +1,3 @@
-import Image from "@/assets/hero_pizza.png"
 import { Badge } from "./ui/badge"
 import { Locate, Timer } from "lucide-react"
 import AvailableMenu from "./AvailableMenu"
@@ -8,7 +7,7 @@ const RestaurantDetail = () => {
     <div className="max-w-6xl mx-auto my-10">
         <div className="w-full">
             <div className="relative w-full h-32 md:h-72 lg:h-84">
-                <img src={Image} alt="res_Image" className="object-cover w-full h-full rounded-lg shadow-lg"/>
+                <img src="https://content.jdmagicbox.com/comp/def_content/pure_veg_restaurants/default-pure-veg-restaurants-5.jpg?clr=#5c3b0a" alt="res_Image" className="object-cover w-full h-full rounded-lg shadow-lg"/>
             </div>
             <div className="flex flex-col md:flex-row justify-between">
                 <div className="my-5">
