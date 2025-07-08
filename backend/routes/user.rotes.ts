@@ -4,13 +4,18 @@ import { checkAuth, forgotPassword, login, logout, resetPassword, signup, update
 
 const router = express.Router();
 
-router.route("/check-auth").get(isAuthenticated, checkAuth);
-router.route("/signup").post(signup);
-router.route("/login").post(login);
-router.route("/logout").post(logout);
-router.route("/verify-email").post(verifyEmail);
-router.route("/forgot-password").post(forgotPassword);
-router.route("/reset-password/:token").post(resetPassword);
-router.route("/profile/update").put(isAuthenticated,updateProfile);
+const asyncHandler = (fn: any) => (req: express.Request, res: express.Response, next: express.NextFunction) =>{
+    Promise.resolve(fn(req, res, next)).catch(next);
+}
+
+
+router.route("/check-auth").get(asyncHandler(isAuthenticated), asyncHandler(checkAuth));
+router.route("/signup").post(asyncHandler(signup));
+router.route("/login").post(asyncHandler(login));
+router.route("/logout").post(asyncHandler(logout));
+router.route("/verify-email").post(asyncHandler(verifyEmail));
+router.route("/forgot-password").post(asyncHandler(forgotPassword));
+router.route("/reset-password/:token").post(asyncHandler(resetPassword));
+router.route("/profile/update").put(asyncHandler(isAuthenticated),asyncHandler(updateProfile));
 
 export default router;
