@@ -74,7 +74,18 @@ export const createCheckoutSession = async (req: Request, res: Response) => {
         if (!session.url) {
             return res.status(400).json({ success: false, message: "Error while creating session" });
         }
+
+
         await order.save();
+
+        const Updatedorder = await Order.findById(session.metadata?.orderId);
+        if(Updatedorder){
+            
+            Updatedorder.status = "confirmed";
+            await Updatedorder.save();
+        }
+
+
         return res.status(200).json({
             session
         });
@@ -85,7 +96,7 @@ export const createCheckoutSession = async (req: Request, res: Response) => {
     }
 }
 
-export const stripeWebhook = async (req: Request, res: Response) => {
+/*export const stripeWebhook = async (req: Request, res: Response) => {
     let event;
 
     try {
@@ -93,7 +104,7 @@ export const stripeWebhook = async (req: Request, res: Response) => {
 
         // Construct the payload string for verification
         const payloadString = JSON.stringify(req.body, null, 2);
-        const secret = process.env.WEBHOOK_ENDPOINT_SECRET!;
+       // const secret = process.env.WEBHOOK_ENDPOINT_SECRET!;
 
         // Generate test header string for event construction
         const header = stripe.webhooks.generateTestHeaderString({
@@ -132,7 +143,7 @@ export const stripeWebhook = async (req: Request, res: Response) => {
     }
     // Send a 200 response to acknowledge receipt of the event
     res.status(200).send();
-};
+};*/
 
 export const createLineItems = (checkoutSessionRequest: CheckoutSessionRequest, menuItems: any) => {
     // 1. create line items
