@@ -2,7 +2,7 @@ const Footer = () => {
   return (
     <footer className="bg-gray-800 text-center text-gray-300 py-8 px-4">
       <p className="text-sm">
-          &copy; 2024 SuryaEats. All rights reserved.
+          &copy; 2025 Quick Bites. All rights reserved.
         </p> 
     </footer>
   );
